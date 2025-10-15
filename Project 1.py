@@ -28,3 +28,16 @@ def import_data(filename):
                     row[headers[i]] = value
         data.append(row)
     return data
+
+# Function: get_average
+def get_average(values):
+    total = 0
+    count = 0
+    for v in values:
+        if v is not None:
+            total = total + v
+            count = count + 1
+    if count == 0:
+        return 0
+    else:
+        return total / count
