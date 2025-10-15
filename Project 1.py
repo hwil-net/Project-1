@@ -41,3 +41,21 @@ def get_average(values):
         return 0
     else:
         return total / count
+    
+# Function: calc_avg_flipper_by_species_and_sex
+def calc_avg_flipper_by_species_and_sex(data):
+    grouped = {}
+    for row in data:
+        species = row.get("species")
+        sex = row.get("sex")
+        flipper = row.get("flipper_length_mm")
+        if species is not None and sex is not None and flipper is not None:
+            key = (species, sex)
+            if key not in grouped:
+                grouped[key] = []
+            grouped[key].append(flipper)
+
+    results = {}
+    for key in grouped:
+        results[key] = get_average(grouped[key])
+    return results
