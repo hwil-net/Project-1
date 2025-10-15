@@ -94,3 +94,21 @@ def calc_ratio_by_species(data):
             ratio = avg_flipper / avg_bill
         results[species] = ratio
     return results
+
+# Function: write_results_to_file
+def write_results_to_file(filename, results1, results2):
+    # Writes the results of both calculations to a text file.
+    # This serves as a report summarizing the findings.
+    f = open(filename, "w")
+    f.write("Average Flipper Length by Species and Sex\n")
+    for key in results1:
+        species, sex = key
+        avg = round(results1[key], 2)
+        f.write(species + " (" + sex + "): " + str(avg) + " mm\n")
+
+    f.write("\nRatio of Average Flipper to Bill Length (per Species)\n")
+    for species in results2:
+        ratio = round(results2[species], 3)
+        f.write(species + ": " + str(ratio) + "\n")
+
+    f.close()
