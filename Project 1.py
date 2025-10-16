@@ -112,3 +112,78 @@ def write_results_to_file(filename, results1, results2):
         f.write(species + ": " + str(ratio) + "\n")
 
     f.close()
+
+    # Test Cases for calc_avg_flipper_by_species_and_sex
+def test_calc_avg_flipper_by_species_and_sex():
+    print("Testing calc_avg_flipper_by_species_and_sex...")
+
+    # Test 1: Regular case with male/female Adelies
+    test_data1 = [
+        {"species": "Adelie", "sex": "male", "flipper_length_mm": 180.0},
+        {"species": "Adelie", "sex": "male", "flipper_length_mm": 190.0},
+        {"species": "Adelie", "sex": "female", "flipper_length_mm": 185.0}
+    ]
+    print(calc_avg_flipper_by_species_and_sex(test_data1))
+
+    # Test 2: Missing value ignored
+    test_data2 = [
+        {"species": "Adelie", "sex": "male", "flipper_length_mm": None},
+        {"species": "Adelie", "sex": "male", "flipper_length_mm": 200.0}
+    ]
+    print(calc_avg_flipper_by_species_and_sex(test_data2))
+
+    # Test 3: All one group (Gentoo females)
+    test_data3 = [
+        {"species": "Gentoo", "sex": "female", "flipper_length_mm": 210.0},
+        {"species": "Gentoo", "sex": "female", "flipper_length_mm": 220.0},
+        {"species": "Gentoo", "sex": "female", "flipper_length_mm": 230.0}
+    ]
+    print(calc_avg_flipper_by_species_and_sex(test_data3))
+
+    # Test 4: Empty data
+    test_data4 = []
+    print(calc_avg_flipper_by_species_and_sex(test_data4))
+
+    # Test 5: No valid data (missing species/sex/flipper)
+    test_data5 = [
+        {"species": "Adelie", "sex": None, "flipper_length_mm": 180.0},
+        {"species": None, "sex": "male", "flipper_length_mm": 190.0},
+        {"species": "Chinstrap", "sex": "male", "flipper_length_mm": None}
+    ]
+    print(calc_avg_flipper_by_species_and_sex(test_data5))
+
+
+# Test Cases for calc_ratio_by_species
+def test_calc_ratio_by_species():
+    print("Testing calc_ratio_by_species...")
+
+    # Test 1: Simple average ratio check
+    test_data1 = [
+        {"species": "Adelie", "flipper_length_mm": 180.0, "bill_length_mm": 40.0},
+        {"species": "Adelie", "flipper_length_mm": 200.0, "bill_length_mm": 50.0}
+    ]
+    print(calc_ratio_by_species(test_data1))
+
+    # Test 2: Division by zero (bill length 0)
+    test_data2 = [
+        {"species": "Gentoo", "flipper_length_mm": 220.0, "bill_length_mm": 0.0}
+    ]
+    print(calc_ratio_by_species(test_data2))
+
+    # Test 3: No valid data (missing flipper or bill)
+    test_data3 = [
+        {"species": "Chinstrap", "flipper_length_mm": None, "bill_length_mm": 50.0},
+        {"species": "Chinstrap", "flipper_length_mm": 190.0, "bill_length_mm": None}
+    ]
+    print(calc_ratio_by_species(test_data3))
+
+    # Test 4: Two different species
+    test_data4 = [
+        {"species": "Adelie", "flipper_length_mm": 200.0, "bill_length_mm": 40.0},
+        {"species": "Gentoo", "flipper_length_mm": 220.0, "bill_length_mm": 50.0}
+    ]
+    print(calc_ratio_by_species(test_data4))
+
+    # Test 5: Empty list
+    test_data5 = []
+    print(calc_ratio_by_species(test_data5))
