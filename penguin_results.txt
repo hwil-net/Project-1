@@ -1,0 +1,14 @@
+Average Flipper Length by Species and Sex
+-----------------------------------------
+Adelie (male): 192.41 mm
+Adelie (female): 187.79 mm
+Gentoo (female): 212.71 mm
+Gentoo (male): 221.54 mm
+Chinstrap (female): 191.74 mm
+Chinstrap (male): 199.91 mm
+
+Ratio of Average Flipper to Bill Length (per Species)
+-----------------------------------------------------
+Adelie: 4.897
+Gentoo: 4.572
+Chinstrap: 4.010
